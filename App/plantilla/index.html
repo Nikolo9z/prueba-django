@@ -10,30 +10,64 @@
 <body>
     <div class="container">
         <h1>Menu pruebas</h1>
-        <div class="input-group mb-3 ">
-            <span class="input-group-text">Piso: </span>
-            <input class="form-control" type="text" placeholder="1,2,3,4">
-        </div>
-        <div class="input-group mb-3 ">
-            <label class="input-group-text" for="inputGroupSelect01">Nivel de Usuario:</label>
-            <select class="form-select" id="inputGroupSelect01">
-            <option value="1">VIP</option>
-            <option value="2">Colaborador</option>
-            <option value="3">Visitante</option>
-            </select>
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Tipo de Vehiculo:</label>
-            <select class="form-select" id="inputGroupSelect01">
-            <option value="1">Auto</option>
-            <option value="2">Moto</option>
-            <option value="3">Bus</option>
-            <option value="4">Bicicleta</option>
-            </select>
-        </div>
-        <div class="input-group mb-3 ">
-            <span class="input-group-text">Telefono: +56 </span>
-            <input class="form-control" type="text" placeholder="9XXXXXXXX">
+        <form action="RegistrarVehiculo/" method="POST">{% csrf_token %}
+            <div class="input-group mb-3 ">
+                <span class="input-group-text">Piso: </span>
+                <input class="form-control" id="pisos" name="pisos" type="text" placeholder="1,2,3,4" minlength="1" maxlength="1" required>
+            </div>
+            <div class="input-group mb-3 ">
+                <label class="input-group-text" for="inputGroupSelect01">Nivel de Usuario:</label>
+                <select class="form-select" id="inputGroupSelect01">
+                <option value="1">VIP</option>
+                <option value="2">Colaborador</option>
+                <option value="3">Visitante</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Tipo de Vehiculo:</label>
+                <select class="form-select" id="inputGroupSelect01">
+                <option value="1">Auto</option>
+                <option value="2">Moto</option>
+                <option value="3">Bus</option>
+                <option value="4">Bicicleta</option>
+                </select>
+            </div>
+            <div class="input-group mb-3 ">
+                <span class="input-group-text">Telefono: +56 </span>
+                <input id="telefono" name="telefono" class="form-control" type="text" placeholder="9XXXXXXXX" maxlength="9">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block text-white">Enviar</button>
+            </div>
+
+        </form>
+       
+        {% for c in Estacionamientos %}
+        <li>
+            {{c.tipo1}}
+        </li>
+        {%endfor%}
+        <div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Piso</th>
+                    <th scope="col">Tipo1</th>
+                    <th scope="col">Tipo2</th>
+                    <th scope="col">Telefono</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for c in Estacionamientos %}
+                    <tr>
+                        <td>{{c.piso}}</td>
+                        <td>{{c.tipo1}}</td>
+                        <td>{{c.tipo2}}</td>
+                        <td>{{c.telefono}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
         </div>
     </div>
 </body>

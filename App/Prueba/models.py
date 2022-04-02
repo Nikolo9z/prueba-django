@@ -16,6 +16,6 @@ class Estacionamiento(models.Model):
         ('M','Moto'),
         ('C','Bicicleta')
     ]
-    tipo2=models.CharField(max_length=3,choices=tipos2,null=True)
+    tipo2=models.CharField(max_length=3,choices=tipos2)
     telefono=models.CharField(max_length=9)
     
